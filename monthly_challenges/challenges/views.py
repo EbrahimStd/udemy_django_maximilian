@@ -30,13 +30,13 @@ def monthly_challenge_by_number(request, month):
     redirect_month = months[month-1]
 
     # make a dynamic url name
-    redirect_path = reverse("challenge_month",args=[redirect_month])
+    redirect_path = reverse("challenge_month", args=[redirect_month])
     return HttpResponseRedirect(redirect_path)
 
 
 def monthly_challenge(response, month):
     try:
         challenge_text = monthly_challenges[month]
-        return HttpResponse(challenge_text)
+        return HttpResponse(f"<h1>{challenge_text}</h1>")
     except:
-        return HttpResponseNotFound("This Month is Not Supported")
+        return HttpResponseNotFound("<strong>This Month is Not Supported</strong>")
